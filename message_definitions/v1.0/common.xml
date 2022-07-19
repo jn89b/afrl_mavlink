@@ -226,9 +226,9 @@
     </enum>
     <enum name="MAV_FRAME">
       <description>Co-ordinate frames used by MAVLink. Not all frames are supported by all commands, messages, or vehicles.
-      
+
       Global frames use the following naming conventions:
-      - "GLOBAL": Global co-ordinate frame with WGS84 latitude/longitude and altitude positive over mean sea level (MSL) by default. 
+      - "GLOBAL": Global co-ordinate frame with WGS84 latitude/longitude and altitude positive over mean sea level (MSL) by default.
         The following modifiers may be used with "GLOBAL":
         - "RELATIVE_ALT": Altitude is relative to the vehicle home position rather than MSL.
         - "TERRAIN_ALT": Altitude is relative to ground level rather than MSL.
@@ -6449,7 +6449,7 @@
         MAV_CMD_REQUEST_MESSAGE.param2 indicates the sequence number the first image to send, or set to -1 to send the message for all sequence numbers.
         MAV_CMD_REQUEST_MESSAGE.param3 is used to specify a range of messages to send:
         set to 0 (default) to send just the the message for the sequence number in param 2,
-        set to -1 to send the message for the sequence number in param 2 and all the following sequence numbers, 
+        set to -1 to send the message for the sequence number in param 2 and all the following sequence numbers,
         set to the sequence number of the final message in the range.</description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
       <field type="uint64_t" name="time_utc" units="us" invalid="0">Timestamp (time since UNIX epoch) in UTC. 0 for unknown.</field>
@@ -7059,12 +7059,12 @@
       <!-- This message is work-in-progress it can therefore change, and should NOT be used in stable production environments -->
       <description>
         Component information message, which may be requested using MAV_CMD_REQUEST_MESSAGE.
-        
+
         This contains MAVLink FTP URIs for the component's general and peripherals metadata files along with their CRCs (which can be used for file caching).
         The files must be hosted on the component, and may be xz compressed.
         The general metadata file can be read to get the locations of additional metadata files (COMP_METADATA_TYPE), which may be hosted either on the vehicle or the Internet.
         For more information see: https://mavlink.io/en/services/component_information.html.
-        
+
         Note: Camera components should use CAMERA_INFORMATION instead, and autopilots may use both this message and AUTOPILOT_VERSION.
       </description>
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
@@ -7266,6 +7266,24 @@
       <field type="uint8_t" name="id" instance="true">Hygrometer ID</field>
       <field type="int16_t" name="temperature" units="cdegC">Temperature</field>
       <field type="uint16_t" name="humidity" units="c%">Humidity</field>
+    </message>
+    <message id="239" name="KEY_COMMAND">
+      <description>Keyboard char command.</description>
+      <field type="uint64_t" name="timestamp"> </field>
+      <field type="char" name="command"> </field>
+    </message>
+    <message id="229" name="FLIGHT_TEST_INPUT">
+      <description>Flight test input for attitude control</description>
+      <field type="uint64_t" name="timestamp">time since system start (microseconds)</field>
+      <field type="uint32_t" name="fti_mode">fti mode set.</field>
+      <field type="uint32_t" name="fti_state">fti state set.</field>
+      <field type="float" name="fti_sweep_time_segment_pct">fti sweep percentage.</field>
+      <field type="float" name="fti_sweep_amplitude">fti sweep amplitude.</field>
+      <field type="float" name="fti_sweep_frequency">fti sweep amplitude.</field>
+      <field type="float" name="fti_injection_input">fti injection input.</field>
+      <field type="float" name="fti_injection_output">fti injection output.</field>
+      <field type="float" name="fti_raw_output">fti raw output.</field>
+      <field type="float" name="fti_injection_point">fti injection point.</field>
     </message>
   </messages>
 </mavlink>
